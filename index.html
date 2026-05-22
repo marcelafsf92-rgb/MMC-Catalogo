@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Catálogo de Plataformas — MMC Locações</title>
+<meta name="description" content="Catálogo técnico de plataformas elevatórias, muncks e guindastes da MMC Locações. +15 anos de experiência, mais de 100 equipamentos em frota.">
+<meta property="og:title" content="Catálogo MMC Locações">
+<meta property="og:description" content="Plataformas elevatórias, muncks e guindastes para locação.">
+<meta property="og:image" content="logo-header.png">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="favicon.png">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--navy:#1E3A8A;--gold:#F5A623;--text:#1e293b;--muted:#64748b;--border:#e2e8f0;--red:#ef4444;--bg:#f5f7fc}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'DM Sans',sans-serif;background:linear-gradient(135deg,#d4ddf0 0%,#e8edf8 40%,#f0f3fa 100%);background-attachment:fixed;color:var(--text);min-height:100vh;padding:24px 16px}
+  .wrap{max-width:1240px;margin:0 auto}
+  .hdr{background:var(--navy);color:#fff;border-radius:16px;padding:22px 28px;margin-bottom:24px;display:flex;align-items:center;gap:18px;box-shadow:0 8px 28px rgba(0,0,0,.18);position:relative;overflow:hidden}
+  .hdr::after{content:'';position:absolute;top:0;right:0;width:40%;height:100%;background:var(--gold);clip-path:polygon(25% 0,100% 0,100% 100%,0% 100%);opacity:.08}
+  .hdr img{height:56px;position:relative;z-index:1}
+  .hdr-text{position:relative;z-index:1;flex:1}
+  .hdr-title{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:30px;line-height:1;text-transform:uppercase}
+  .hdr-title span{color:var(--gold)}
+  .hdr-sub{font-size:13px;opacity:.75;margin-top:4px}
+  .hdr-wpp{background:#25D366;color:#fff;padding:10px 16px;border-radius:10px;text-decoration:none;font-weight:600;font-size:13px;display:flex;align-items:center;gap:6px;white-space:nowrap;z-index:1;position:relative}
+  .stats{display:flex;gap:0;background:#1A2D52;border-radius:12px;padding:14px 24px;margin-bottom:24px;flex-wrap:wrap;justify-content:space-around}
+  .stat{display:flex;align-items:center;gap:10px;color:#fff;padding:0 16px}
+  .stat-num{font-family:'Barlow Condensed',sans-serif;font-size:24px;font-weight:800;color:var(--gold);line-height:1}
+  .stat-lbl{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.5px;opacity:.7}
+  .filter{background:#fff;border-radius:12px;padding:14px 18px;margin-bottom:18px;display:flex;gap:10px;flex-wrap:wrap;align-items:center;border:1px solid var(--border)}
+  .filter select,.filter input{padding:8px 12px;border-radius:8px;border:1px solid var(--border);font-family:inherit;font-size:14px;background:#fff;color:var(--text)}
+  .filter input{flex:1;min-width:200px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
+  .card{background:#fff;border-radius:14px;border:1px solid var(--border);overflow:hidden;cursor:pointer;transition:transform .15s,box-shadow .15s;text-decoration:none;color:var(--text);display:flex;flex-direction:column}
+  .card:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(30,58,138,.18)}
+  .card-img{background:#f1f5f9;display:flex;align-items:center;justify-content:center;height:200px;padding:8px}
+  .card-img img{max-width:100%;max-height:100%;object-fit:contain}
+  .card-img-empty{height:200px;background:linear-gradient(135deg,#e0e7ff,#c7d2fe);display:flex;align-items:center;justify-content:center;color:var(--navy);font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:30px}
+  .card-body{padding:14px 16px;flex:1}
+  .card-tipo{font-size:10px;color:var(--gold);font-weight:700;letter-spacing:.5px;text-transform:uppercase;margin-bottom:2px}
+  .card-name{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:20px;color:var(--navy);line-height:1.1}
+  .card-specs{font-size:11px;color:var(--muted);margin-top:8px;display:flex;gap:10px;flex-wrap:wrap}
+  .card-specs b{color:var(--navy);font-weight:700}
+  .empty{padding:60px 24px;text-align:center;color:var(--muted);background:#fff;border-radius:12px;border:1px solid var(--border)}
+  /* DETAIL VIEW */
+  .detail{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 8px 28px rgba(0,0,0,.10)}
+  .detail-back{display:inline-flex;align-items:center;gap:6px;color:var(--navy);text-decoration:none;font-weight:600;font-size:14px;margin-bottom:14px;background:#fff;padding:8px 14px;border-radius:8px;border:1px solid var(--border)}
+  .detail-img{background:#f1f5f9;display:flex;align-items:center;justify-content:center;padding:24px}
+  .detail-img img{max-width:100%;max-height:480px;object-fit:contain}
+  .detail-body{padding:28px 32px}
+  .detail-tipo{font-size:12px;color:var(--gold);font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px}
+  .detail-title{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:42px;color:var(--navy);line-height:1;margin-bottom:8px}
+  .detail-desc{font-size:15px;color:var(--text);line-height:1.5;margin:14px 0 8px}
+  .detail-specs-title{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:20px;color:var(--navy);margin:20px 0 12px;border-top:1px solid var(--border);padding-top:16px}
+  .detail-specs{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
+  .spec{background:#f0f4ff;border-radius:10px;padding:12px 14px}
+  .spec-lbl{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:2px}
+  .spec-val{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:20px;color:var(--navy)}
+  .detail-acts{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+  .btn-wpp{flex:1;min-width:220px;background:#25D366;color:#fff;border-radius:12px;padding:14px 20px;text-align:center;text-decoration:none;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:17px;display:flex;align-items:center;justify-content:center;gap:8px}
+  .btn-pdf{background:var(--navy);color:#fff;border-radius:12px;padding:14px 20px;text-align:center;text-decoration:none;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:17px;display:flex;align-items:center;justify-content:center;gap:8px}
+  .footer{margin-top:24px;text-align:center;font-size:12px;color:var(--muted);padding:16px}
+  .footer a{color:var(--navy);font-weight:600;text-decoration:none}
+  .spinner{display:flex;align-items:center;justify-content:center;padding:80px;color:var(--muted)}
+  @media (max-width:720px){
+    body{padding:14px 8px}
+    .hdr{padding:16px 18px;flex-wrap:wrap}
+    .hdr img{height:42px}
+    .hdr-title{font-size:22px}
+    .hdr-sub{font-size:11px}
+    .hdr-wpp{padding:8px 12px;font-size:12px}
+    .detail-body{padding:18px 20px}
+    .detail-title{font-size:30px}
+    .card-img,.card-img-empty{height:160px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hdr">
+    <img src="logo-header.png" alt="MMC Locações">
+    <div class="hdr-text">
+      <div class="hdr-title">MMC <span>LOCAÇÕES</span></div>
+      <div class="hdr-sub">Plataformas elevatórias · Muncks · Guindastes · Ribeirão Preto/SP</div>
+    </div>
+    <a class="hdr-wpp" href="https://wa.me/5516993190466" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor" style="width:16px;height:16px"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-1-.3-.1-.5-.2-.7.2-.2.3-.7 1-.9 1.2-.2.2-.3.2-.6.1-.3-.2-1.2-.5-2.3-1.4-.9-.7-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.1.2-.3.3-.4.1-.2 0-.3 0-.5-.1-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5 1.8.8 2.5.8 3.4.7.5-.1 1.7-.7 1.9-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.2-.6-.4zM12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 5L2 22l5.2-1.4c1.5.8 3.1 1.2 4.8 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2z"/></svg>
+      WhatsApp
+    </a>
+  </header>
+
+  <main id="content">
+    <div class="spinner">Carregando catálogo...</div>
+  </main>
+
+  <footer class="footer">© MMC Locações · <a href="https://wa.me/5516993190466">WhatsApp (16) 99319-0466</a> · +15 anos no mercado</footer>
+</div>
+
+<script>
+const SUPA_URL='https://yxibxbeoeqcqcqpfensv.supabase.co';
+const SUPA_KEY='sb_publishable_UOmrmMH79geJ-ITCNGV1-w_2ShPS_yn';
+const H={'apikey':SUPA_KEY,'Authorization':'Bearer '+SUPA_KEY};
+const WPP='5516993190466';
+
+function esc(s){return String(s??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+function htmlEnt(s){return esc(s)}
+
+const slug=new URLSearchParams(location.search).get('manual');
+
+if(slug){
+  loadDetail(slug);
+} else {
+  loadCatalog();
+}
+
+async function loadCatalog(){
+  try{
+    const r=await fetch(SUPA_URL+'/rest/v1/manuais?publico=eq.true&select=*&order=marca,modelo',{headers:H});
+    const data=await r.json();
+    renderCatalog(data);
+  } catch {
+    document.getElementById('content').innerHTML='<div class="empty">Erro ao carregar o catálogo. Tente novamente.</div>';
+  }
+}
+
+function renderCatalog(items){
+  const byTipo={};
+  items.forEach(m=>{const t=m.tipo||'Outro';(byTipo[t]=byTipo[t]||[]).push(m)});
+  const tipos=Object.keys(byTipo).sort();
+  let html='<div class="stats">'+
+    '<div class="stat"><span class="stat-num">'+items.length+'</span><span class="stat-lbl">Modelos<br>disponíveis</span></div>'+
+    '<div class="stat"><span class="stat-num">'+tipos.length+'</span><span class="stat-lbl">Categorias<br>de equipamento</span></div>'+
+    '<div class="stat"><span class="stat-num">+15</span><span class="stat-lbl">Anos<br>no mercado</span></div>'+
+    '<div class="stat"><span class="stat-num">100+</span><span class="stat-lbl">Equipamentos<br>em frota</span></div>'+
+    '</div>';
+  html+='<div class="filter">'+
+    '<select id="fTipo"><option value="">Todos os tipos</option>'+tipos.map(t=>'<option>'+esc(t)+'</option>').join('')+'</select>'+
+    '<input id="fBusca" type="search" placeholder="Buscar por marca, modelo...">'+
+    '</div>';
+  html+='<div id="grid" class="grid"></div>';
+  document.getElementById('content').innerHTML=html;
+  window._items=items;
+  document.getElementById('fTipo').addEventListener('change',applyFilter);
+  let t;document.getElementById('fBusca').addEventListener('input',()=>{clearTimeout(t);t=setTimeout(applyFilter,200)});
+  applyFilter();
+}
+
+function applyFilter(){
+  const tipo=document.getElementById('fTipo').value;
+  const busca=document.getElementById('fBusca').value.toLowerCase().trim();
+  const filt=window._items.filter(m=>{
+    if(tipo && m.tipo!==tipo) return false;
+    if(busca){
+      const hay=((m.marca||'')+' '+(m.modelo||'')+' '+(m.tipo||'')+' '+(m.descricao||'')).toLowerCase();
+      if(!hay.includes(busca)) return false;
+    }
+    return true;
+  });
+  const grid=document.getElementById('grid');
+  if(!filt.length){grid.innerHTML='<div class="empty" style="grid-column:1/-1">Nenhum equipamento encontrado.</div>';return}
+  grid.innerHTML=filt.map(m=>{
+    const specs=[];
+    if(m.altura_trabalho_m) specs.push('<span><b>'+esc(m.altura_trabalho_m)+'m</b> trabalho</span>');
+    if(m.capacidade_kg) specs.push('<span><b>'+esc(m.capacidade_kg)+'kg</b></span>');
+    return '<a class="card" href="?manual='+encodeURIComponent(m.slug)+'">'+
+      (m.foto_url?'<div class="card-img"><img src="'+esc(m.foto_url)+'" alt="" loading="lazy"></div>':'<div class="card-img-empty">📋</div>')+
+      '<div class="card-body">'+
+      '<div class="card-tipo">'+esc(m.tipo||'—')+'</div>'+
+      '<div class="card-name">'+esc(m.marca||'')+' '+esc(m.modelo||'')+'</div>'+
+      (specs.length?'<div class="card-specs">'+specs.join('')+'</div>':'')+
+      '</div></a>';
+  }).join('');
+}
+
+async function loadDetail(slug){
+  try{
+    const r=await fetch(SUPA_URL+'/rest/v1/manuais?slug=eq.'+encodeURIComponent(slug)+'&publico=eq.true&select=*',{headers:H});
+    const arr=await r.json();
+    if(!arr.length){
+      document.getElementById('content').innerHTML='<div class="empty"><h2 style="font-family:Barlow Condensed;color:var(--navy);margin-bottom:8px">Equipamento não encontrado</h2><p>Verifique o link ou volte ao catálogo.</p><a href="./" class="detail-back" style="margin-top:14px;display:inline-flex">← Ver catálogo completo</a></div>';
+      return;
+    }
+    renderDetail(arr[0]);
+    document.title='MMC · '+(arr[0].marca||'')+' '+(arr[0].modelo||'');
+  } catch {
+    document.getElementById('content').innerHTML='<div class="empty">Erro ao carregar.</div>';
+  }
+}
+
+function renderDetail(m){
+  const specs=[
+    ['Capacidade',m.capacidade_kg?m.capacidade_kg+' kg':null],
+    ['Altura de Trabalho',m.altura_trabalho_m?m.altura_trabalho_m+' m':null],
+    ['Altura da Plataforma',m.altura_plataforma_m?m.altura_plataforma_m+' m':null],
+    ['Alcance Horizontal',m.alcance_horizontal_m?m.alcance_horizontal_m+' m':null],
+    ['Peso',m.peso_kg?m.peso_kg+' kg':null],
+    ['Dimensões',m.dimensoes],
+    ['Motor',m.motor],
+    ['Tração',m.tracao],
+    ['Alimentação',m.alimentacao]
+  ].filter(x=>x[1]);
+  const msg=encodeURIComponent('Olá! Tenho interesse em locar a '+(m.marca||'')+' '+(m.modelo||'')+'. Pode me passar mais informações?');
+  const wppUrl='https://wa.me/'+WPP+'?text='+msg;
+  let html='<a href="./" class="detail-back">← Voltar ao catálogo</a><div class="detail">';
+  if(m.foto_url) html+='<div class="detail-img"><img src="'+esc(m.foto_url)+'" alt="'+esc(m.modelo)+'"></div>';
+  html+='<div class="detail-body">';
+  html+='<div class="detail-tipo">'+esc(m.tipo||'Equipamento')+'</div>';
+  html+='<h1 class="detail-title">'+esc(m.marca||'')+' '+esc(m.modelo||'')+'</h1>';
+  if(m.descricao) html+='<p class="detail-desc">'+esc(m.descricao)+'</p>';
+  if(specs.length){
+    html+='<div class="detail-specs-title">Especificações</div>';
+    html+='<div class="detail-specs">'+specs.map(([k,v])=>'<div class="spec"><div class="spec-lbl">'+esc(k)+'</div><div class="spec-val">'+esc(v)+'</div></div>').join('')+'</div>';
+  }
+  html+='<div class="detail-acts">';
+  html+='<a class="btn-wpp" href="'+wppUrl+'" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" style="width:20px;height:20px"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-1-.3-.1-.5-.2-.7.2-.2.3-.7 1-.9 1.2-.2.2-.3.2-.6.1-.3-.2-1.2-.5-2.3-1.4-.9-.7-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.1.2-.3.3-.4.1-.2 0-.3 0-.5-.1-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5 1.8.8 2.5.8 3.4.7.5-.1 1.7-.7 1.9-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.2-.6-.4zM12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 5L2 22l5.2-1.4c1.5.8 3.1 1.2 4.8 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2z"/></svg> Pedir Orçamento</a>';
+  if(m.pdf_url) html+='<a class="btn-pdf" href="'+esc(m.pdf_url)+'" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:20px;height:20px"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Baixar Ficha (PDF)</a>';
+  html+='</div></div></div>';
+  document.getElementById('content').innerHTML=html;
+}
+</script>
+</body>
+</html>

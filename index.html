@@ -178,6 +178,7 @@ async function loadDetail(slug){
   try{
     const r=await fetch(SUPA_URL+'/rest/v1/manuais?slug=eq.'+encodeURIComponent(slug)+'&publico=eq.true&select=*',{headers:H});
     const arr=await r.json();
+    if(!Array.isArray(arr)) throw new Error('resposta inesperada'); // erro Supabase vira "Erro ao carregar", nao "nao encontrado"
     if(!arr.length){
       document.getElementById('content').innerHTML='<div class="empty"><h2 style="font-family:Barlow Condensed;color:var(--navy);margin-bottom:8px">Equipamento não encontrado</h2><p>Verifique o link ou volte ao catálogo.</p><a href="./" class="detail-back" style="margin-top:14px;display:inline-flex">← Ver catálogo completo</a></div>';
       return;
